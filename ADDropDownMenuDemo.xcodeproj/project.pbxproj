@@ -21,6 +21,8 @@
 		6D4A221C185F640B00A40B0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4A21FE185F640B00A40B0F /* UIKit.framework */; };
 		6D4A2224185F640B00A40B0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A2222185F640B00A40B0F /* InfoPlist.strings */; };
 		6D4A2226185F640B00A40B0F /* ADDropDownMenuDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2225185F640B00A40B0F /* ADDropDownMenuDemoTests.m */; };
+		6D4A2235185F654000A40B0F /* ADDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2234185F654000A40B0F /* ADDropDownMenuView.m */; };
+		6D4A2238185F655500A40B0F /* ADDropDownMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2237185F655500A40B0F /* ADDropDownMenuItemView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		6D4A2221185F640B00A40B0F /* ADDropDownMenuDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ADDropDownMenuDemoTests-Info.plist"; sourceTree = "<group>"; };
 		6D4A2223185F640B00A40B0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6D4A2225185F640B00A40B0F /* ADDropDownMenuDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADDropDownMenuDemoTests.m; sourceTree = "<group>"; };
+		6D4A2233185F654000A40B0F /* ADDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDropDownMenuView.h; sourceTree = "<group>"; };
+		6D4A2234185F654000A40B0F /* ADDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDropDownMenuView.m; sourceTree = "<group>"; };
+		6D4A2236185F655500A40B0F /* ADDropDownMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDropDownMenuItemView.h; sourceTree = "<group>"; };
+		6D4A2237185F655500A40B0F /* ADDropDownMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDropDownMenuItemView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 		6D4A21EE185F640B00A40B0F = {
 			isa = PBXGroup;
 			children = (
+				6D4A2232185F64AE00A40B0F /* ADDropDownMenu */,
 				6D4A2200185F640B00A40B0F /* ADDropDownMenuDemo */,
 				6D4A221F185F640B00A40B0F /* ADDropDownMenuDemoTests */,
 				6D4A21F9185F640B00A40B0F /* Frameworks */,
@@ -150,6 +157,17 @@
 				6D4A2222185F640B00A40B0F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6D4A2232185F64AE00A40B0F /* ADDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				6D4A2233185F654000A40B0F /* ADDropDownMenuView.h */,
+				6D4A2234185F654000A40B0F /* ADDropDownMenuView.m */,
+				6D4A2236185F655500A40B0F /* ADDropDownMenuItemView.h */,
+				6D4A2237185F655500A40B0F /* ADDropDownMenuItemView.m */,
+			);
+			path = ADDropDownMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4A2238185F655500A40B0F /* ADDropDownMenuItemView.m in Sources */,
 				6D4A2211185F640B00A40B0F /* ViewController.m in Sources */,
+				6D4A2235185F654000A40B0F /* ADDropDownMenuView.m in Sources */,
 				6D4A220B185F640B00A40B0F /* AppDelegate.m in Sources */,
 				6D4A2207185F640B00A40B0F /* main.m in Sources */,
 			);
@@ -376,12 +396,15 @@
 		6D4A222A185F640B00A40B0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ADDropDownMenuDemo/ADDropDownMenuDemo-Prefix.pch";
 				INFOPLIST_FILE = "ADDropDownMenuDemo/ADDropDownMenuDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -389,12 +412,15 @@
 		6D4A222B185F640B00A40B0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ADDropDownMenuDemo/ADDropDownMenuDemo-Prefix.pch";
 				INFOPLIST_FILE = "ADDropDownMenuDemo/ADDropDownMenuDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
