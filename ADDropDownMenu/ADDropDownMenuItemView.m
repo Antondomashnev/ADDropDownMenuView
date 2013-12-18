@@ -14,7 +14,6 @@
 @interface ADDropDownMenuItemView()
 
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
-@property (nonatomic, unsafe_unretained, readwrite) ADDropDownMenuItemViewState state;
 @property (nonatomic, strong) NSMutableDictionary *statesBackgroundColor;
 
 @end

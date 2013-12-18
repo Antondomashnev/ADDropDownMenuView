@@ -37,7 +37,7 @@
     ADDropDownMenuItemView *item1 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
     item1.titleLabel.text = NSLocalizedString(@"Item 1", @"");
     
-    ADDropDownMenuItemView *item2 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 64)];
+    ADDropDownMenuItemView *item2 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
     item1.titleLabel.text = NSLocalizedString(@"Item 2", @"");
     
     ADDropDownMenuItemView *item3 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];

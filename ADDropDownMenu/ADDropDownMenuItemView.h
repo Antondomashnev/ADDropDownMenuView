@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, ADDropDownMenuItemViewState){
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
-@property (nonatomic, unsafe_unretained, readonly) ADDropDownMenuItemViewState state;
+@property (nonatomic, unsafe_unretained) ADDropDownMenuItemViewState state;
 
 /*!
  @warning ADDropDownMenu works fine with ADDropDownMenuItemView items with the same size

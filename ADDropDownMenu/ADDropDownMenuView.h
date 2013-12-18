@@ -11,8 +11,8 @@
 @interface ADDropDownMenuView : UIView
 
 @property (nonatomic, strong, readonly) NSMutableArray *itemsViews;
-
 @property (nonatomic, strong) UIColor *separatorColor;
+@property (nonatomic, unsafe_unretained, readonly) BOOL isOpen;
 
 - (instancetype)initAtOrigin:(CGPoint)origin withItemsViews:(NSArray *)itemsViews;
 
