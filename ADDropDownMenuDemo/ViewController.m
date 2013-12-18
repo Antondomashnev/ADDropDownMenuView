@@ -11,7 +11,7 @@
 #import "ADDropDownMenuView.h"
 #import "ADDropDownMenuItemView.h"
 
-@interface ViewController ()
+@interface ViewController ()<ADDropDownMenuDelegate>
 
 @end
 
@@ -38,13 +38,20 @@
     item1.titleLabel.text = NSLocalizedString(@"Item 1", @"");
     
     ADDropDownMenuItemView *item2 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
-    item1.titleLabel.text = NSLocalizedString(@"Item 2", @"");
+    item2.titleLabel.text = NSLocalizedString(@"Item 2", @"");
     
     ADDropDownMenuItemView *item3 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
-    item1.titleLabel.text = NSLocalizedString(@"Item 3", @"");
+    item3.titleLabel.text = NSLocalizedString(@"Item 3", @"");
     
     ADDropDownMenuView *dropDownMenuView = [[ADDropDownMenuView alloc] initAtOrigin:CGPointMake(0, 20) withItemsViews:@[item1, item2, item3]];
+    dropDownMenuView.delegate = self;
     [self.view addSubview: dropDownMenuView];
+}
+
+#pragma mark - ADDropDownMenuDelegate
+
+- (void)ADDropDownMenu:(ADDropDownMenuView *)view didSelectItem:(ADDropDownMenuItemView *)item{
+    NSLog(@"%@ selected", item.titleLabel.text);
 }
 
 @end

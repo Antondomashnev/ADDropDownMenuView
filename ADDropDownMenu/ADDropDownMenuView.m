@@ -10,6 +10,7 @@
 #import "ADDropDownMenuItemView.h"
 
 #define SEPARATOR_VIEW_HEIGHT 1
+#define AD_DROP_DOWN_MENU_ANIMATION_DURATION 0.3
 
 @interface ADDropDownMenuView()
 
@@ -103,6 +104,11 @@
             self.shouldContractOnTouchesEnd = NO;
             [self selectItem: (ADDropDownMenuItemView *)itemView];
             [self exchangeItem:(ADDropDownMenuItemView *)itemView withItem:[self.itemsViews firstObject]];
+            
+            if([self.delegate respondsToSelector:@selector(ADDropDownMenu:didSelectItem:)]){
+                [self.delegate ADDropDownMenu:self didSelectItem:(ADDropDownMenuItemView *)itemView];
+            }
+            
             [self contract];
         }
     }
@@ -198,11 +204,16 @@
 - (void)expand{
     
     self.isAnimating = YES;
+    CGRect expandedFrame = (CGRect){.origin = self.containerView.frame.origin,
+        .size = CGSizeMake(self.containerView.frame.size.width, [ADDropDownMenuView expandedHeightForItemsViews: self.itemsViews])};
+    
+    if([self.delegate respondsToSelector:@selector(ADDropDownMenu:willExpandToRect:)]){
+        [self.delegate ADDropDownMenu:self willExpandToRect:expandedFrame];
+    }
     
     self.frame = (CGRect){.origin = self.frame.origin, .size = CGSizeMake(self.frame.size.width, [UIScreen mainScreen].applicationFrame.size.height)};
-    [UIView animateWithDuration:0.5 animations:^{
-        self.containerView.frame = (CGRect){.origin = self.containerView.frame.origin,
-            .size = CGSizeMake(self.containerView.frame.size.width, [ADDropDownMenuView expandedHeightForItemsViews: self.itemsViews])};
+    [UIView animateWithDuration:AD_DROP_DOWN_MENU_ANIMATION_DURATION animations:^{
+        self.containerView.frame = expandedFrame;
     } completion:^(BOOL finished) {
         self.isAnimating = NO;
     }];
@@ -213,11 +224,16 @@
 - (void)contract{
     
     self.isAnimating = YES;
+    CGRect contractedFrame = (CGRect){.origin = self.containerView.frame.origin,
+        .size = CGSizeMake(self.containerView.frame.size.width, [ADDropDownMenuView contractedHeightForItemsViews: self.itemsViews])};
+    
+    if([self.delegate respondsToSelector:@selector(ADDropDownMenu:willContractToRect:)]){
+        [self.delegate ADDropDownMenu:self willContractToRect:contractedFrame];
+    }
     
     self.frame = (CGRect){.origin = self.frame.origin, .size = CGSizeMake(self.frame.size.width, [ADDropDownMenuView contractedHeightForItemsViews: self.itemsViews])};
-    [UIView animateWithDuration:0.5 animations:^{
-        self.containerView.frame = (CGRect){.origin = self.containerView.frame.origin,
-            .size = CGSizeMake(self.containerView.frame.size.width, [ADDropDownMenuView contractedHeightForItemsViews: self.itemsViews])};
+    [UIView animateWithDuration:AD_DROP_DOWN_MENU_ANIMATION_DURATION animations:^{
+        self.containerView.frame = contractedFrame;
     } completion:^(BOOL finished) {
         self.isAnimating = NO;
     }];
