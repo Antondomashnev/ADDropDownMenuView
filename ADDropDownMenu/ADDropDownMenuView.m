@@ -38,6 +38,7 @@
                                                  
         [self addContainerView];
         [self addItemsViewsAndSeparators];
+        [self selectItem: [self.itemsViews firstObject]];
     }
     
     return self;
@@ -60,6 +61,7 @@
     CGPoint locationPoint = [[touches anyObject] locationInView:self];
     UIView *itemView = [self hitTest:locationPoint withEvent:event];
     if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
+        [self highlightItem: (ADDropDownMenuItemView *)itemView];
         [self expand];
     }
 }
@@ -69,7 +71,7 @@
     CGPoint locationPoint = [[touches anyObject] locationInView:self];
     UIView* itemView = [self hitTest:locationPoint withEvent:event];
     if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
-        //TODO
+        [self highlightItem: (ADDropDownMenuItemView *)itemView];
     }
     
     self.shouldContractOnTouchesEnd = YES;
@@ -79,7 +81,7 @@
     
     UITouch *touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView: self];
-    if(touchLocation.y > 0 && !self.isAnimating){
+    if(touchLocation.y > 0){
         [self userDidEndTouches:touches withEvent:event];
     }
 }
@@ -98,12 +100,15 @@
         CGPoint locationPoint = [[touches anyObject] locationInView:self];
         UIView* itemView = [self hitTest:locationPoint withEvent:event];
         if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
-            [self contract];
             self.shouldContractOnTouchesEnd = NO;
+            [self selectItem: (ADDropDownMenuItemView *)itemView];
+            [self exchangeItem:(ADDropDownMenuItemView *)itemView withItem:[self.itemsViews firstObject]];
+            [self contract];
         }
     }
     else{
         self.shouldContractOnTouchesEnd = YES;
+        [self selectItem: [self.itemsViews firstObject]];
     }
 }
 
@@ -145,6 +150,39 @@
 }
 
 #pragma mark - Helpers
+
+- (void)exchangeItem:(ADDropDownMenuItemView *)item withItem:(ADDropDownMenuItemView *)item2{
+    
+    CGRect itemRect = item.frame;
+    item.frame = item2.frame;
+    item2.frame = itemRect;
+    
+    [self.itemsViews exchangeObjectAtIndex:[self.itemsViews indexOfObject: item] withObjectAtIndex:[self.itemsViews indexOfObject: item2]];
+}
+
+- (void)highlightItem:(ADDropDownMenuItemView *)item{
+    
+    [self.itemsViews enumerateObjectsUsingBlock:^(ADDropDownMenuItemView *obj, NSUInteger idx, BOOL *stop) {
+        if(obj == item){
+            obj.state = ADDropDownMenuItemViewStateHighlighted;
+        }
+        else{
+            obj.state = ADDropDownMenuItemViewStateNormal;
+        }
+    }];
+}
+
+- (void)selectItem:(ADDropDownMenuItemView *)item{
+    
+    [self.itemsViews enumerateObjectsUsingBlock:^(ADDropDownMenuItemView *obj, NSUInteger idx, BOOL *stop) {
+        if(obj == item){
+            obj.state = ADDropDownMenuItemViewStateSelected;
+        }
+        else{
+            obj.state = ADDropDownMenuItemViewStateNormal;
+        }
+    }];
+}
 
 + (CGFloat)contractedHeightForItemsViews:(NSArray *)itemsViews{
     ADDropDownMenuView *item = [itemsViews firstObject];

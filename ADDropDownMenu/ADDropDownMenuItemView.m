@@ -33,13 +33,23 @@
     return self;
 }
 
+#pragma mark - Properties
+
+- (void)setState:(ADDropDownMenuItemViewState)state{
+    
+    if(state != _state){
+        _state = state;
+        [self updateUIForCurrentState];
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)setDefaultValues{
     
-    [self setBackgroundColor:[UIColor grayColor] forState:ADDropDownMenuItemViewStateNormal];
-    [self setBackgroundColor:[UIColor lightGrayColor] forState:ADDropDownMenuItemViewStateSelected];
-    [self setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.2] forState:ADDropDownMenuItemViewStateHighlighted];
+    [self setBackgroundColor:[UIColor colorWithRed:1. green:0 blue:0 alpha:0.5] forState:ADDropDownMenuItemViewStateNormal];
+    [self setBackgroundColor:[UIColor colorWithRed:0. green:1. blue:0 alpha:0.5] forState:ADDropDownMenuItemViewStateSelected];
+    [self setBackgroundColor:[UIColor colorWithRed:0. green:0 blue:1. alpha:0.5] forState:ADDropDownMenuItemViewStateHighlighted];
 }
 
 - (void)updateUIForCurrentState{
