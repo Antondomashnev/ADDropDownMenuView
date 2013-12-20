@@ -20,7 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
     [self addDropDownMenu];
 }
 
@@ -34,18 +33,21 @@
 
 - (void)addDropDownMenu{
     
-    ADDropDownMenuItemView *item1 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
-    item1.titleLabel.text = NSLocalizedString(@"Item 1", @"");
-    
-    ADDropDownMenuItemView *item2 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
-    item2.titleLabel.text = NSLocalizedString(@"Item 2", @"");
-    
-    ADDropDownMenuItemView *item3 = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
-    item3.titleLabel.text = NSLocalizedString(@"Item 3", @"");
-    
-    ADDropDownMenuView *dropDownMenuView = [[ADDropDownMenuView alloc] initAtOrigin:CGPointMake(0, 20) withItemsViews:@[item1, item2, item3]];
+    ADDropDownMenuView *dropDownMenuView = [[ADDropDownMenuView alloc] initAtOrigin:CGPointMake(0, 20)
+                                                            withItemsViews:@[[self dropDownItemWithTitle:NSLocalizedString(@"Item 1", @"")],
+                                                                             [self dropDownItemWithTitle:NSLocalizedString(@"Item 2", @"")],
+                                                                             [self dropDownItemWithTitle:NSLocalizedString(@"Item 3", @"")]]];
     dropDownMenuView.delegate = self;
+    dropDownMenuView.separatorColor = [UIColor blackColor];
     [self.view addSubview: dropDownMenuView];
+}
+
+- (ADDropDownMenuItemView *)dropDownItemWithTitle:(NSString *)title{
+    
+    ADDropDownMenuItemView *item = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
+    item.titleLabel.text = title;
+    [item setTitleColor:[UIColor colorWithRed:161./255. green:163./255. blue:163./255. alpha:1.] forState:ADDropDownMenuItemViewStateNormal];
+    return item;
 }
 
 #pragma mark - ADDropDownMenuDelegate

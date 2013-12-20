@@ -14,7 +14,11 @@
 @interface ADDropDownMenuItemView()
 
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
+@property (nonatomic, strong, readwrite) UIImageView *backgroundImageView;
+
 @property (nonatomic, strong) NSMutableDictionary *statesBackgroundColor;
+@property (nonatomic, strong) NSMutableDictionary *statesBackgroundImages;
+@property (nonatomic, strong) NSMutableDictionary *statesTitleColor;
 
 @end
 
@@ -25,8 +29,11 @@
     if(self = [super initWithFrame: (CGRect){.size = size}]){
         
         self.statesBackgroundColor = [NSMutableDictionary dictionary];
+        self.statesBackgroundImages = [NSMutableDictionary dictionary];
+        self.statesTitleColor = [NSMutableDictionary dictionary];
         
         [self setDefaultValues];
+        [self addBackgroundImageView];
         [self addTitleLabel];
         [self updateUIForCurrentState];
     }
@@ -47,17 +54,29 @@
 
 - (void)setDefaultValues{
     
-    [self setBackgroundColor:[UIColor colorWithRed:1. green:0 blue:0 alpha:0.5] forState:ADDropDownMenuItemViewStateNormal];
-    [self setBackgroundColor:[UIColor colorWithRed:0. green:1. blue:0 alpha:0.5] forState:ADDropDownMenuItemViewStateSelected];
-    [self setBackgroundColor:[UIColor colorWithRed:0. green:0 blue:1. alpha:0.5] forState:ADDropDownMenuItemViewStateHighlighted];
+    [self setBackgroundColor:[UIColor colorWithRed:67./255. green:70./255. blue:71./255. alpha:1.] forState:ADDropDownMenuItemViewStateNormal];
+    [self setBackgroundColor:[UIColor colorWithRed:55./255. green:59./255. blue:60./255. alpha:1.] forState:ADDropDownMenuItemViewStateSelected];
+    [self setBackgroundColor:[UIColor colorWithRed:55./255. green:59./255. blue:60./255. alpha:1.] forState:ADDropDownMenuItemViewStateHighlighted];
+    
+    [self setTitleColor:[UIColor whiteColor] forState:ADDropDownMenuItemViewStateNormal];
+    [self setTitleColor:[UIColor whiteColor] forState:ADDropDownMenuItemViewStateSelected];
+    [self setTitleColor:[UIColor whiteColor] forState:ADDropDownMenuItemViewStateHighlighted];
 }
 
 - (void)updateUIForCurrentState{
     
     self.backgroundColor = self.statesBackgroundColor[@(self.state)];
+    self.backgroundImageView.image = self.statesBackgroundImages[@(self.state)];
+    self.titleLabel.textColor = self.statesTitleColor[@(self.state)];
 }
 
 #pragma mark - UI
+
+- (void)addBackgroundImageView{
+    
+    self.backgroundImageView = [[UIImageView alloc] initWithFrame: self.bounds];
+    [self addSubview: self.backgroundImageView];
+}
 
 - (void)addTitleLabel{
     
@@ -71,6 +90,8 @@
     [self addSubview: self.titleLabel];
 }
 
+//161 163 163
+
 #pragma mark - Interface
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(ADDropDownMenuItemViewState)state{
@@ -81,6 +102,26 @@
 
 - (UIColor *)backgroundColorForState:(ADDropDownMenuItemViewState)state{
     return self.statesBackgroundColor[@(state)];
+}
+
+- (void)setBackgroundImage:(UIImage *)image forState:(ADDropDownMenuItemViewState)state{
+    
+    NSParameterAssert(image);
+    self.statesBackgroundImages[@(state)] = image;
+}
+
+- (UIImage *)backgroundImageForState:(ADDropDownMenuItemViewState)state{
+    return self.statesBackgroundImages[@(state)];
+}
+
+- (void)setTitleColor:(UIColor *)color forState:(ADDropDownMenuItemViewState)state{
+    
+    NSParameterAssert(color);
+    self.statesTitleColor[@(state)] = color;
+}
+
+- (UIColor *)titleColorForState:(ADDropDownMenuItemViewState)state{
+    return self.statesTitleColor[@(state)];
 }
 
 /*

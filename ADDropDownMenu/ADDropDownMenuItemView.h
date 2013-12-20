@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, ADDropDownMenuItemViewState){
 @interface ADDropDownMenuItemView : UIView
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
+@property (nonatomic, strong, readonly) UIImageView *backgroundImageView;;
 
 @property (nonatomic, unsafe_unretained) ADDropDownMenuItemViewState state;
 
@@ -27,5 +28,12 @@ typedef NS_ENUM(NSInteger, ADDropDownMenuItemViewState){
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(ADDropDownMenuItemViewState)state;
 - (UIColor *)backgroundColorForState:(ADDropDownMenuItemViewState)state;
+
+- (void)setBackgroundImage:(UIImage *)image forState:(ADDropDownMenuItemViewState)state;
+- (UIImage *)backgroundImageForState:(ADDropDownMenuItemViewState)state;
+
+- (void)setTitleColor:(UIColor *)color forState:(ADDropDownMenuItemViewState)state;
+- (UIColor *)titleColorForState:(ADDropDownMenuItemViewState)state;
+
 
 @end

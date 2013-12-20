@@ -11,10 +11,12 @@
 
 #define SEPARATOR_VIEW_HEIGHT 1
 #define AD_DROP_DOWN_MENU_ANIMATION_DURATION 0.3
+#define DIM_VIEW_TAG 1919101910
 
 @interface ADDropDownMenuView()
 
 @property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) UIView *dimView;
 @property (nonatomic, strong, readwrite) NSMutableArray *itemsViews;
 @property (nonatomic, strong) NSMutableArray *separators;
 
@@ -36,7 +38,8 @@
         self.backgroundColor = [UIColor clearColor];
         self.itemsViews = [itemsViews mutableCopy];
         self.separators = [NSMutableArray array];
-                                                 
+                                 
+        [self addDimView];
         [self addContainerView];
         [self addItemsViewsAndSeparators];
         [self selectItem: [self.itemsViews firstObject]];
@@ -74,6 +77,9 @@
     if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
         [self highlightItem: (ADDropDownMenuItemView *)itemView];
     }
+    else{
+        [self highlightItem: nil];
+    }
     
     self.shouldContractOnTouchesEnd = YES;
 }
@@ -96,29 +102,47 @@
 
 - (void)userDidEndTouches:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    if(self.shouldContractOnTouchesEnd){
-        
-        CGPoint locationPoint = [[touches anyObject] locationInView:self];
-        UIView* itemView = [self hitTest:locationPoint withEvent:event];
-        if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
-            self.shouldContractOnTouchesEnd = NO;
-            [self selectItem: (ADDropDownMenuItemView *)itemView];
-            [self exchangeItem:(ADDropDownMenuItemView *)itemView withItem:[self.itemsViews firstObject]];
-            
-            if([self.delegate respondsToSelector:@selector(ADDropDownMenu:didSelectItem:)]){
-                [self.delegate ADDropDownMenu:self didSelectItem:(ADDropDownMenuItemView *)itemView];
-            }
-            
-            [self contract];
-        }
+    CGPoint locationPoint = [[touches anyObject] locationInView:self];
+    UIView* itemView = [self hitTest:locationPoint withEvent:event];
+    
+    if(itemView.tag == DIM_VIEW_TAG){
+        self.shouldContractOnTouchesEnd = NO;
+        [self selectItem: [self.itemsViews firstObject]];
+        [self contract];
     }
     else{
-        self.shouldContractOnTouchesEnd = YES;
-        [self selectItem: [self.itemsViews firstObject]];
+        if(self.shouldContractOnTouchesEnd){
+            
+            if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
+                self.shouldContractOnTouchesEnd = NO;
+                [self selectItem: (ADDropDownMenuItemView *)itemView];
+                [self exchangeItem:(ADDropDownMenuItemView *)itemView withItem:[self.itemsViews firstObject]];
+                
+                if([self.delegate respondsToSelector:@selector(ADDropDownMenu:didSelectItem:)]){
+                    [self.delegate ADDropDownMenu:self didSelectItem:(ADDropDownMenuItemView *)itemView];
+                }
+                
+                [self contract];
+            }
+        }
+        else{
+            self.shouldContractOnTouchesEnd = YES;
+            [self selectItem: [self.itemsViews firstObject]];
+        }
     }
 }
 
 #pragma mark - UI
+
+- (void)addDimView{
+
+    self.dimView = [[UIView alloc] initWithFrame: self.bounds];
+    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.dimView.backgroundColor = [UIColor blackColor];
+    self.dimView.alpha = 0.;
+    self.dimView.tag = DIM_VIEW_TAG;
+    [self addSubview: self.dimView];
+}
 
 - (void)addContainerView{
     
@@ -213,6 +237,7 @@
     
     self.frame = (CGRect){.origin = self.frame.origin, .size = CGSizeMake(self.frame.size.width, [UIScreen mainScreen].applicationFrame.size.height)};
     [UIView animateWithDuration:AD_DROP_DOWN_MENU_ANIMATION_DURATION animations:^{
+        self.dimView.alpha = 0.4;
         self.containerView.frame = expandedFrame;
     } completion:^(BOOL finished) {
         self.isAnimating = NO;
@@ -233,6 +258,7 @@
     
     self.frame = (CGRect){.origin = self.frame.origin, .size = CGSizeMake(self.frame.size.width, [ADDropDownMenuView contractedHeightForItemsViews: self.itemsViews])};
     [UIView animateWithDuration:AD_DROP_DOWN_MENU_ANIMATION_DURATION animations:^{
+        self.dimView.alpha = 0.;
         self.containerView.frame = contractedFrame;
     } completion:^(BOOL finished) {
         self.isAnimating = NO;
