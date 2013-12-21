@@ -54,8 +54,6 @@ dropDownMenuView.delegate = self;
 [self.view addSubview: dropDownMenuView];
 ```
 
-Also you can see the example of usage in ViewController.m in demo project.
-
 ADDropDownMenuView has ADDropDownMenuItemView separator color options
 ```objective-c
 @property (nonatomic, strong) UIColor *separatorColor;
