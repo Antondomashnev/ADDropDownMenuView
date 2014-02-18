@@ -30,4 +30,6 @@
 
 - (instancetype)initAtOrigin:(CGPoint)origin withItemsViews:(NSArray *)itemsViews;
 
+- (void)setSelectedAtIndex:(NSInteger)index;
+
 @end
