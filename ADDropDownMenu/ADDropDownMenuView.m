@@ -45,7 +45,7 @@
         [self addContainerView];
         [self addItemsViewsAndSeparators];
         [self selectItem: [self.itemsViews firstObject]];
-		self.initialItems = [NSArray arrayWithArray:itemsViews];
+	self.initialItems = [NSArray arrayWithArray:itemsViews];
     }
     
     return self;
