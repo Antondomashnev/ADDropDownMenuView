@@ -24,6 +24,8 @@
 @property (nonatomic, unsafe_unretained) BOOL isAnimating;
 @property (nonatomic, unsafe_unretained) BOOL shouldContractOnTouchesEnd;
 
+@property (nonatomic, strong) NSArray *initialItems;
+
 @end
 
 @implementation ADDropDownMenuView
@@ -43,6 +45,7 @@
         [self addContainerView];
         [self addItemsViewsAndSeparators];
         [self selectItem: [self.itemsViews firstObject]];
+	self.initialItems = [NSArray arrayWithArray:itemsViews];
     }
     
     return self;
@@ -275,5 +278,16 @@
     // Drawing code
 }
 */
+
+- (void)setSelectedAtIndex:(NSInteger)index {
+    ADDropDownMenuItemView *itemView = self.initialItems[index];
+	self.shouldContractOnTouchesEnd = NO;
+	[self selectItem: itemView];
+	[self exchangeItem: itemView withItem:[self.itemsViews firstObject]];
+	if([self.delegate respondsToSelector:@selector(ADDropDownMenu:didSelectItem:)]){
+		[self.delegate ADDropDownMenu:self didSelectItem:itemView];
+	}
+	[self contract];
+}
 
 @end
