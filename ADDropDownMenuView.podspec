@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ADDropDownMenuView"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "ADDropDownMenuView is an iOS navigation drop down style view."
   s.description  = <<-DESC
                     ADDropDownMenuView is an iOS navigation drop down style view.
