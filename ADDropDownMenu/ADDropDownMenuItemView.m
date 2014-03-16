@@ -98,6 +98,7 @@
     
     NSParameterAssert(backgroundColor);
     self.statesBackgroundColor[@(state)] = backgroundColor;
+    [self updateUIForCurrentState];
 }
 
 - (UIColor *)backgroundColorForState:(ADDropDownMenuItemViewState)state{
@@ -108,6 +109,7 @@
     
     NSParameterAssert(image);
     self.statesBackgroundImages[@(state)] = image;
+    [self updateUIForCurrentState];
 }
 
 - (UIImage *)backgroundImageForState:(ADDropDownMenuItemViewState)state{

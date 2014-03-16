@@ -47,6 +47,9 @@
     ADDropDownMenuItemView *item = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(320, 44)];
     item.titleLabel.text = title;
     [item setTitleColor:[UIColor colorWithRed:161./255. green:163./255. blue:163./255. alpha:1.] forState:ADDropDownMenuItemViewStateNormal];
+//    [item setBackgroundImage:[UIImage imageNamed:@"ADDropDownMenuItemNormalImage"] forState:ADDropDownMenuItemViewStateNormal];
+//    [item setBackgroundImage:[UIImage imageNamed:@"ADDropDownMenuItemSelectedImage"] forState:ADDropDownMenuItemViewStateSelected];
+//    [item setBackgroundImage:[UIImage imageNamed:@"ADDropDownMenuItemHighlightedImage"] forState:ADDropDownMenuItemViewStateHighlighted];
     return item;
 }
 

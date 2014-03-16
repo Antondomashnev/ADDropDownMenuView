@@ -23,6 +23,10 @@
 		6D4A2226185F640B00A40B0F /* ADDropDownMenuDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2225185F640B00A40B0F /* ADDropDownMenuDemoTests.m */; };
 		6D4A2235185F654000A40B0F /* ADDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2234185F654000A40B0F /* ADDropDownMenuView.m */; };
 		6D4A2238185F655500A40B0F /* ADDropDownMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2237185F655500A40B0F /* ADDropDownMenuItemView.m */; };
+		FA23351218D5A8530078B74B /* ADDropDownMenuItemNormalImage.png in Resources */ = {isa = PBXBuildFile; fileRef = FA23350E18D5A8530078B74B /* ADDropDownMenuItemNormalImage.png */; };
+		FA23351318D5A8530078B74B /* ADDropDownMenuItemNormalImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA23350F18D5A8530078B74B /* ADDropDownMenuItemNormalImage@2x.png */; };
+		FA23351418D5A8530078B74B /* ADDropDownMenuItemSelectedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = FA23351018D5A8530078B74B /* ADDropDownMenuItemSelectedImage.png */; };
+		FA23351518D5A8530078B74B /* ADDropDownMenuItemSelectedImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA23351118D5A8530078B74B /* ADDropDownMenuItemSelectedImage@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		6D4A2234185F654000A40B0F /* ADDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDropDownMenuView.m; sourceTree = "<group>"; };
 		6D4A2236185F655500A40B0F /* ADDropDownMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDropDownMenuItemView.h; sourceTree = "<group>"; };
 		6D4A2237185F655500A40B0F /* ADDropDownMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDropDownMenuItemView.m; sourceTree = "<group>"; };
+		FA23350E18D5A8530078B74B /* ADDropDownMenuItemNormalImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ADDropDownMenuItemNormalImage.png; sourceTree = "<group>"; };
+		FA23350F18D5A8530078B74B /* ADDropDownMenuItemNormalImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADDropDownMenuItemNormalImage@2x.png"; sourceTree = "<group>"; };
+		FA23351018D5A8530078B74B /* ADDropDownMenuItemSelectedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ADDropDownMenuItemSelectedImage.png; sourceTree = "<group>"; };
+		FA23351118D5A8530078B74B /* ADDropDownMenuItemSelectedImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ADDropDownMenuItemSelectedImage@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,7 @@
 		6D4A2200185F640B00A40B0F /* ADDropDownMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
+				FA23350D18D5A8530078B74B /* Resources */,
 				6D4A2209185F640B00A40B0F /* AppDelegate.h */,
 				6D4A220A185F640B00A40B0F /* AppDelegate.m */,
 				6D4A220C185F640B00A40B0F /* Main.storyboard */,
@@ -168,6 +177,17 @@
 				6D4A2237185F655500A40B0F /* ADDropDownMenuItemView.m */,
 			);
 			path = ADDropDownMenu;
+			sourceTree = "<group>";
+		};
+		FA23350D18D5A8530078B74B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA23350E18D5A8530078B74B /* ADDropDownMenuItemNormalImage.png */,
+				FA23350F18D5A8530078B74B /* ADDropDownMenuItemNormalImage@2x.png */,
+				FA23351018D5A8530078B74B /* ADDropDownMenuItemSelectedImage.png */,
+				FA23351118D5A8530078B74B /* ADDropDownMenuItemSelectedImage@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +267,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D4A2213185F640B00A40B0F /* Images.xcassets in Resources */,
+				FA23351318D5A8530078B74B /* ADDropDownMenuItemNormalImage@2x.png in Resources */,
 				6D4A2205185F640B00A40B0F /* InfoPlist.strings in Resources */,
+				FA23351218D5A8530078B74B /* ADDropDownMenuItemNormalImage.png in Resources */,
+				FA23351418D5A8530078B74B /* ADDropDownMenuItemSelectedImage.png in Resources */,
+				FA23351518D5A8530078B74B /* ADDropDownMenuItemSelectedImage@2x.png in Resources */,
 				6D4A220E185F640B00A40B0F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +510,7 @@
 				6D4A222B185F640B00A40B0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D4A222C185F640B00A40B0F /* Build configuration list for PBXNativeTarget "ADDropDownMenuDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +519,7 @@
 				6D4A222E185F640B00A40B0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
