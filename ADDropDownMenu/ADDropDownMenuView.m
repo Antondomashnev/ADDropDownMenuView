@@ -241,7 +241,7 @@
         [self.delegate ADDropDownMenu:self willExpandToRect:expandedFrame];
     }
     
-    self.frame = (CGRect){.origin = self.frame.origin, .size = CGSizeMake(self.frame.size.width, [UIScreen mainScreen].applicationFrame.size.height)};
+    self.frame = expandedFrame;
     [UIView animateWithDuration:AD_DROP_DOWN_MENU_ANIMATION_DURATION animations:^{
         self.dimView.alpha = 0.4;
         self.containerView.frame = expandedFrame;
