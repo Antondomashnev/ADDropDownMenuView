@@ -40,7 +40,8 @@
         self.backgroundColor = [UIColor clearColor];
         self.itemsViews = [itemsViews mutableCopy];
         self.separators = [NSMutableArray array];
-                                 
+        self.shouldExchangeItems = YES;
+                        
         [self addDimView];
         [self addContainerView];
         [self addItemsViewsAndSeparators];
@@ -119,7 +120,9 @@
             if([itemView isKindOfClass: [ADDropDownMenuItemView class]]){
                 self.shouldContractOnTouchesEnd = NO;
                 [self selectItem: (ADDropDownMenuItemView *)itemView];
-                [self exchangeItem:(ADDropDownMenuItemView *)itemView withItem:[self.itemsViews firstObject]];
+                if (self.shouldExchangeItems) {
+                    [self exchangeItem:(ADDropDownMenuItemView *)itemView withItem:[self.itemsViews firstObject]];
+                }
                 
                 if([self.delegate respondsToSelector:@selector(ADDropDownMenu:didSelectItem:)]){
                     [self.delegate ADDropDownMenu:self didSelectItem:(ADDropDownMenuItemView *)itemView];
@@ -238,7 +241,7 @@
         [self.delegate ADDropDownMenu:self willExpandToRect:expandedFrame];
     }
     
-    self.frame = (CGRect){.origin = self.frame.origin, .size = CGSizeMake(self.frame.size.width, [UIScreen mainScreen].applicationFrame.size.height)};
+    self.frame = expandedFrame;
     [UIView animateWithDuration:AD_DROP_DOWN_MENU_ANIMATION_DURATION animations:^{
         self.dimView.alpha = 0.4;
         self.containerView.frame = expandedFrame;

@@ -25,6 +25,7 @@
 @property (nonatomic, strong, readonly) NSMutableArray *itemsViews;
 @property (nonatomic, strong) UIColor *separatorColor;
 @property (nonatomic, unsafe_unretained, readonly) BOOL isOpen;
+@property (nonatomic, readwrite) BOOL shouldExchangeItems;
 
 @property (nonatomic, weak) id<ADDropDownMenuDelegate> delegate;
 
