@@ -19,7 +19,7 @@ ADDropDownMenuView works on any iOS version only greater or equal than 5.0 and i
 You will need LLVM 3.0 or later in order to build ADDropDownMenuView. 
 
 ------------------------------------
-Adding ADGraphView to your project
+Adding ADDropDownMenuView to your project
 ====================================
 
 From CocoaPods
